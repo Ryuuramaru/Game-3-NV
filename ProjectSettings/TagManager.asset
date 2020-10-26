@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Jump
   - Run
+  - Pushable
   layers:
   - Default
   - TransparentFX
