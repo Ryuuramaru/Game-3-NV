@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 	private bool grounded = false;
 	private bool canDoubleJump = true;
 
+	public GameObject Player;
+
 	void Awake()
 	{
 		rb.freezeRotation = true;
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 	void FixedUpdate()
 	{
 
-		if (Input.GetButton("Run")) speed = rawspeed * 1.75f; //Normal or Run speed function
+		if (Player.GetComponent<AbilityLocalization>().CanRun && Input.GetButton("Run")) speed = rawspeed * 1.75f; //Normal or Run speed function
 		else speed = rawspeed;
 
 		// Calculate how fast we should be moving
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 		{   // Jump
 		//canDoubleJump = false; not work
 
-			if (Input.GetButtonDown("Jump"))
+			if (Input.GetButtonDown("Jump") && Player.GetComponent<AbilityLocalization>().CanJump)
 			{
 				rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 				canDoubleJump = true;
